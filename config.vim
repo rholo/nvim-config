@@ -9,7 +9,6 @@ colorscheme gruvbox
 
 set completeopt=menuone,noinsert,noselect
 
-let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache', '.tmp']
 let g:nvim_tree_quit_on_open = 1
 
 lua << EOF
@@ -87,6 +86,9 @@ telescope.setup{
 local nvimtree = require('nvim-tree')
 nvimtree.setup {
   auto_close = true,
+  filters = {
+    custom = {'.git', 'node_modules', '.cache', '.tmp'}
+  },
   view = {
     auto_resize = true
     } 
