@@ -26,7 +26,7 @@ nvim_lsp.tsserver.setup {
 }
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'javascript', 'json', 'css', 'scss' },
+  filetypes = { 'javascript', 'typescript', 'json', 'css', 'scss' },
   init_options = {
     linters = {
       eslint = {
@@ -71,7 +71,7 @@ telescope.setup{
     layout_strategy = "vertical",
     sorting_strategy = "ascending",
     color_devicons = true,
-    file_ignore_patters = {"node_modules", ".temp", "dist", "%yarn"},
+    file_ignore_patters = {"node_modules", "dist", "%yarn"},
     layout_config = {
       prompt_position = "top",
     },
@@ -87,7 +87,7 @@ local nvimtree = require('nvim-tree')
 nvimtree.setup {
   auto_close = true,
   filters = {
-    custom = {'.git', 'node_modules', '.cache', '.tmp'}
+    custom = {'.git', 'node_modules'}
   },
   view = {
     auto_resize = true
