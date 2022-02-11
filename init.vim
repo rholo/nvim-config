@@ -33,6 +33,8 @@ set termguicolors
 set autoread
 set nowritebackup
 set noshowmode
+set path+=**
+set wildignore+=*/node_modules/*
 
 runtime ./plug.vim
 runtime ./config.vim
