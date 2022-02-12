@@ -4,6 +4,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'neovim/nvim-lspconfig'
+Plug 'tami5/lspsaga.nvim'
+
 Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -20,7 +22,6 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'folke/lsp-colors.nvim'
-
 
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
