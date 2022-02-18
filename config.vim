@@ -5,8 +5,9 @@
 "let ayucolor="dark"   " for dark version of theme
 
 let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_transparent_bg =1
 colorscheme gruvbox 
-
+hi Normal guibg=NONE
 set completeopt=menu,menuone,noinsert,noselect
 
 let g:nvim_tree_quit_on_open = 1
@@ -22,7 +23,6 @@ lualine.setup({
 
 local lsp_saga = require'lspsaga'
 lsp_saga.init_lsp_saga{
-  debug = true
 }
 EOF
 
@@ -51,8 +51,8 @@ lua << EOF
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     }, {
@@ -119,7 +119,7 @@ end
   
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = {'typescript', 'typescriptreact', 'typescript.tsx'},
+  filetypes = {'typescript', 'typescriptreact', 'typescript.tsx', 'javascript'},
   capabilites = capabilities
 }
 
