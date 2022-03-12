@@ -10,8 +10,37 @@ colorscheme gruvbox
 hi Normal guibg=NONE
 set completeopt=menu,menuone,noinsert,noselect
 
-
 lua << EOF
+vim.diagnostic.config({
+  virtual_text = false
+})
+local signs = { Error = "ﴫ", Warn = "ﮊ", Hint = "ﮧ", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+function PrintDiagnostics(opts, bufnr, line_nr, client_id)
+  bufnr = bufnr or 0
+  line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
+  opts = opts or {['lnum'] = line_nr}
+
+  local line_diagnostics = vim.diagnostic.get(bufnr, opts)
+  if vim.tbl_isempty(line_diagnostics) then return end
+
+  local diagnostic_message = ""
+  for i, diagnostic in ipairs(line_diagnostics) do
+    diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
+    print(diagnostic_message)
+    if i ~= #line_diagnostics then
+      diagnostic_message = diagnostic_message .. "\n"
+    end
+  end
+  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
+end
+vim.o.updatetime = 250
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+
 local lualine = require('lualine')
 lualine.setup({
   options = {
@@ -19,11 +48,6 @@ lualine.setup({
     icons_enabled = true
   }
 })
-
-local lsp_saga = require'lspsaga'
-lsp_saga.init_lsp_saga {
-  border_style = "round"
-}
 EOF
 
 lua << EOF
@@ -121,68 +145,10 @@ end
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = {'typescript', 'typescriptreact', 'typescript.tsx', 'javascript'},
-  capabilites = capabilities
+  capabilites = capabilities,
+  underline = true
 }
 
-nvim_lsp.diagnosticls.setup {
-  on_attach = on_attach,
-  filetypes = {'javascript', 'javascriptreact', 'json', 'typescript', 'typrescriptreact', 'css', 'scss'},
-  init_options = {
-    linters = {
-      eslint = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        debounce = 100,
-        args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
-        sourceName = 'eslint_d',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = '[eslint] ${message} [${ruleId}]',
-          security = 'severity'
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning'
-        }
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    },
-    formatters = {
-      eslint_d = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-        rootPatterns = { '.git' },
-      },
-      prettier = {
-        command = 'prettier_d_slim',
-        rootPatterns = { '.git' },
-        -- requiredFiles: { 'prettier.config.js' },
-        args = { '--stdin', '--stdin-filepath', '%filename' }
-      }
-    },
-    formatFiletypes = {
-      css = 'prettier',
-      javascript = 'prettier',
-      javascriptreact = 'prettier',
-      json = 'prettier',
-      scss = 'prettier',
-      less = 'prettier',
-      typescript = 'prettier',
-      typescriptreact = 'prettier',
-      json = 'prettier',
-    }
-  }
-}
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')

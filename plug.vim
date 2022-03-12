@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'neovim/nvim-lspconfig'
-Plug 'tami5/lspsaga.nvim'
 
 Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
