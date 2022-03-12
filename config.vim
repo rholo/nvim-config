@@ -10,7 +10,6 @@ colorscheme gruvbox
 hi Normal guibg=NONE
 set completeopt=menu,menuone,noinsert,noselect
 
-let g:nvim_tree_quit_on_open = 1
 
 lua << EOF
 local lualine = require('lualine')
@@ -22,7 +21,8 @@ lualine.setup({
 })
 
 local lsp_saga = require'lspsaga'
-lsp_saga.init_lsp_saga{
+lsp_saga.init_lsp_saga {
+  border_style = "round"
 }
 EOF
 
@@ -97,6 +97,7 @@ require("lsp-colors").setup({
 EOF
 
 lua << EOF
+
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
@@ -206,6 +207,11 @@ telescope.setup{
 local nvimtree = require('nvim-tree')
 nvimtree.setup {
   auto_close = true,
+  actions = {
+    open_file = {
+      quit_on_open = true
+    }
+  },
   filters = {
     custom = {'.git', 'node_modules'}
   },
