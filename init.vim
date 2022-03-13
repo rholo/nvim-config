@@ -35,7 +35,6 @@ set nowritebackup
 set noshowmode
 set path+=**
 set wildignore+=*/node_modules/*
-set completeopt=menu,menuone,noinsert,noselect
 
 runtime ./plug.vim
 runtime ./config.vim
