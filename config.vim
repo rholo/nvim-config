@@ -14,7 +14,7 @@ lua << EOF
 vim.diagnostic.config({
   virtual_text = false
 })
-local signs = { Error = "ﴫ", Warn = "ﮊ", Hint = "ﮧ", Info = "" }
+local signs = { Error = "?", Warn = "?", Hint = "?", Info = "?" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -154,7 +154,7 @@ local telescope = require('telescope')
 local actions = require('telescope.actions')
 telescope.setup{
   defaults = {
-    prompt_prefix = "👽 ",
+    prompt_prefix = "?? ",
     layout_strategy = "vertical",
     sorting_strategy = "ascending",
     color_devicons = true,
