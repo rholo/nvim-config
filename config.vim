@@ -179,9 +179,6 @@ nvimtree.setup {
   },
   filters = {
     custom = {'.git', 'node_modules'}
-  },
-  view = {
-    auto_resize = true
-    } 
   }
+}
 EOF
