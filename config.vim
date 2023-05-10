@@ -170,15 +170,4 @@ telescope.setup{
   }
 }
 
-local nvimtree = require('nvim-tree')
-nvimtree.setup {
-  actions = {
-    open_file = {
-      quit_on_open = true
-    }
-  },
-  filters = {
-    custom = {'.git', 'node_modules'}
-  }
-}
 EOF

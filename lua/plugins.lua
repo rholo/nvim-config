@@ -23,23 +23,42 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use {
-  'nvim-tree/nvim-tree.lua',
-  requires = {
-    'nvim-tree/nvim-web-devicons', -- optional
-  },
-  config = function()
-    require("nvim-tree").setup {
-      actions = {
-        open_file = {
-          quit_on_open = true
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {'morhetz/gruvbox', config = function() vim.cmd.colorscheme("gruvbox") end }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    config = function()
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'gruvbox'
         }
-      },
-      filters = {
-        custom = {'.git', 'node_modules'}
       }
-    }
   end
-}
+  }
+  use 'shinchu/lightline-gruvbox.vim'
+  use {
+  'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+    config = function()
+      require("nvim-tree").setup {
+        actions = {
+          open_file = {
+            quit_on_open = true
+          }
+        },
+        filters = {
+          custom = {'.git', 'node_modules'}
+        }
+      }
+  end
+  }
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'

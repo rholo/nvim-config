@@ -19,6 +19,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " THEMES
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
+
 Plug 'folke/lsp-colors.nvim'
 
 Plug 'camspiers/animate.vim'
