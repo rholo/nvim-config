@@ -17,7 +17,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " THEMES
-Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'folke/lsp-colors.nvim'
