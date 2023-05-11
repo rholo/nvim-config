@@ -68,6 +68,12 @@ return require('packer').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig'
 
+  -- lsp helpers
+  use 'hrsh7th/cmp-nvim-lsp'
+  use ({'glepnir/lspsaga.nvim', branch = 'main'})
+  use 'jose-elias-alvarez/typescript.nvim'
+  use 'onsails/lspkind.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
