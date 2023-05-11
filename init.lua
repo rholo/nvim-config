@@ -1,3 +1,5 @@
-require('options')
-require('keymaps')
-require('plugins')
+require('plugins-setup')
+require('core.options')
+require('core.keymaps')
+require('plugins.nvim-cmp')
+require('plugins.lsp.mason')
