@@ -78,8 +78,11 @@ return require('packer').startup(function(use)
 
   use {
     "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
+      config = function() require("nvim-autopairs").setup {
+        disable_filetype = {'TelescopePromt'}
+      } end
   }
+  use 'lewis6991/gitsigns.nvim'  
   -- use 'sheerun/vim-polyglot'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
