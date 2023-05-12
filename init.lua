@@ -1,8 +1,9 @@
+require('core.options')
 require('plugins-setup')
 require('core.options')
 require('core.keymaps')
-require('plugins.nvim-cmp')
-require('plugins.lsp.mason')
 require('plugins.lsp.lspconfig')
-require('plugins.lsp.lspsaga')
-
+require('plugins.nvim-cmp')
+require('plugins.lspkind')
+-- require('plugins.lsp.mason')
+-- require('plugins.lsp.lspsaga')

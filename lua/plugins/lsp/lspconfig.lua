@@ -1,41 +1,21 @@
-local lspconfig_status, lspconfig = pcall(require, 'lspconfig')
-if not lspconfig_status then
-  return
-end
+local status, lsp_config = pcall(require, 'lspconfig')
+if (not status)  then return end
 
-local cmp_nevim_lsp_status, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if not cmp_nevim_lsp_status then
-  return
-end
-
-local typescript_setup, typescript = pcall(require, 'typescript')
-if not typescript_setup then
-  return
-end
-
-local keymap = vim.keymap
+local protocol = require('vim.lsp.protocol')
 
 local on_attach = function(client, bufnr)
-
-  if client.name == 'tsserver' then
-    keymap.set('n', '<leader>rn', ':TypescriptRenameFile<CR>', {noremap = true, silent = true, buffer = bufnr})
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
   end
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+lsp_config.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = {'typescript', 'typescriptreact', 'typescript.tsx', 'javascript'},
+  cmd = { "typescript-language-server", "--stdio"},
+  underline = true
+}
 
-typescript.setup({
-  server = {
-    capabilities = capabilities,
-    on_attach = on_attach
-  }
-})
-
-lspconfig['html'].setup({
-  capabilities = capabilities,
-  on_attach = on_attach
-})
-lspconfig['cssls'].setup({
-  capabilities = capabilities,
-  on_attach = on_attach
-})

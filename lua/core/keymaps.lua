@@ -26,3 +26,4 @@ vim.keymap.set('n', '<Leader>b', ':Telescope buffers<CR>', opts)
 
 -- easymotion
 -- nmap <Leader>s <Plug>(easymotion-s2)
+vim.keymap.set('n', '<Leader>s', '<Plug>(easymotion-s2)', opts)
