@@ -1,7 +1,9 @@
 local status, lsp_config = pcall(require, 'lspconfig')
-if (not status)  then return end
+if (not status) then return end
 
-local protocol = require('vim.lsp.protocol')
+-- local protocol = require('vim.lsp.protocol')
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
@@ -14,8 +16,7 @@ end
 
 lsp_config.tsserver.setup {
   on_attach = on_attach,
-  filetypes = {'typescript', 'typescriptreact', 'typescript.tsx', 'javascript'},
-  cmd = { "typescript-language-server", "--stdio"},
-  underline = true
+  filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript' },
+  cmd = { "typescript-language-server", "--stdio" },
+  capabilities = capabilities
 }
-

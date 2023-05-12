@@ -15,7 +15,7 @@ local packer_bootstrap = ensure_packer()
 vim.cmd([[
     augroup packer_user_config
       autocmd!
-     autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+     autocmd BufWritePost rholo/core/plugins.lua source <afile> | PackerSync
   augroup END
 ]])
 
@@ -61,20 +61,20 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/nvim-cmp'
-  
+
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
 
   -- lsp server
   use 'neovim/nvim-lspconfig'
-  
+
   -- lsp helpers
   use ({'glepnir/lspsaga.nvim', branch = 'main'})
   use ({'mg979/vim-visual-multi', branch = 'master'})
 
   -- linters
- 
+
 
   use {
     "windwp/nvim-autopairs",
@@ -82,7 +82,7 @@ return require('packer').startup(function(use)
         disable_filetype = {'TelescopePromt'}
       } end
   }
-  use 'lewis6991/gitsigns.nvim'  
+  use 'lewis6991/gitsigns.nvim'
   -- use 'sheerun/vim-polyglot'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
