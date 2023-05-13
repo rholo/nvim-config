@@ -39,7 +39,8 @@ opt.ignorecase = true
 opt.backupskip = '/tmp/*,/private/tmp/*'
 --opt.nowritebackup = true
 --opt.noshowmode = true
-
+vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
+vim.opt.wildignore:append { '*/node_modules/*' }
 -- Turn off paste mode when leaving INSERT
 vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = '*',
