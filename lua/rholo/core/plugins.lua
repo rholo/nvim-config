@@ -13,9 +13,9 @@ local packer_bootstrap = ensure_packer()
 
 -- Reloads Neovim after whenever you save plugins.lua
 vim.cmd([[
-    augroup packer_user_config
-      autocmd!
-     autocmd BufWritePost rholo/core/plugins.lua source <afile> | PackerSync
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup END
 ]])
 
