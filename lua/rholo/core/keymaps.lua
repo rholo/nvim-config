@@ -10,7 +10,7 @@ vim.keymap.set('n', '<Leader>cb', ':bd<CR>', opts)
 vim.keymap.set('n', '<Leader>rg', ':Rg<CR>', opts)
 vim.keymap.set('n', '<Leader>f', ':GFiles<CR>', opts)
 vim.keymap.set('n', '<Leader>r', ':%s//g<Left><Left>', opts)
-vim.keymap.set('n', '<Leader>e', ':e<CR>', opts)
+vim.keymap.set('n', '<Leader>e', ':e!<CR>', opts)
 
 -- nvim-tree
 vim.keymap.set('n', '<Leader>n', ':NvimTreeToggle<CR>', opts)
@@ -25,5 +25,4 @@ vim.keymap.set('n', '<Leader>gc', ':Telescope git_commits<CR>', opts)
 vim.keymap.set('n', '<Leader>b', ':Telescope buffers<CR>', opts)
 
 -- easymotion
--- nmap <Leader>s <Plug>(easymotion-s2)
 vim.keymap.set('n', '<Leader>s', '<Plug>(easymotion-s2)', opts)
