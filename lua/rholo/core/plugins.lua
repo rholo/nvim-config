@@ -82,6 +82,8 @@ return require('packer').startup(function(use)
         disable_filetype = {'TelescopePromt'}
       } end
   }
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use 'lewis6991/gitsigns.nvim'
   -- use 'sheerun/vim-polyglot'
   -- Automatically set up your configuration after cloning packer.nvim
