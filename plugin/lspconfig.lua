@@ -6,15 +6,17 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Remove diagnostic label inline
 vim.diagnostic.config({
-  virtual_text = false
+  virtual_text = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰠭",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = ""
+    }
+  }
 })
 
--- Add custom icons
-local signs = { Error = "󰠭", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
 -- Custom diagnostic message
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
   bufnr = bufnr or 0
@@ -54,7 +56,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-lsp_config.tsserver.setup {
+lsp_config.ts_ls.setup {
   on_attach = on_attach,
   filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript' },
   cmd = { "typescript-language-server", "--stdio" },

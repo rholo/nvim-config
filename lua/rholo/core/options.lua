@@ -11,6 +11,7 @@ opt.expandtab = true
 opt.ruler = true
 opt.showcmd = true
 opt.smartindent = true
+opt.swapfile = false
 opt.ai = true -- auto-indent
 opt.si = true -- smart-indent
 opt.numberwidth = 1
@@ -39,6 +40,7 @@ opt.ignorecase = true
 opt.backupskip = '/tmp/*,/private/tmp/*'
 --opt.nowritebackup = true
 --opt.noshowmode = true
+vim.opt.sessionoptions = "buffers,curdir,tabpages,winsize,help,globals,skiprtp,localoptions"
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
 -- Turn off paste mode when leaving INSERT
@@ -46,4 +48,3 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = '*',
   command = "set nopaste"
 })
-
