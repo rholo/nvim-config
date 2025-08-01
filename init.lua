@@ -1,0 +1,5 @@
+require('rholo.core.options')
+require('rholo.core.session')
+require('rholo.core.keymaps')
+require('rholo.core.plugins')
+require('rholo.core.theme')
